@@ -1,0 +1,26 @@
+[package]
+name = "sdcard"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Walksnail SD card detection, content scanning, and firmware staging."
+
+[dependencies]
+hardware.workspace = true
+firmware-index.workspace = true
+anyhow.workspace = true
+thiserror.workspace = true
+serde.workspace = true
+sysinfo.workspace = true
+walkdir.workspace = true
+tokio.workspace = true
+tracing.workspace = true
+sha1.workspace = true
+hex.workspace = true
+reqwest.workspace = true
+futures-util.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true
+tokio = { workspace = true, features = ["macros", "rt", "rt-multi-thread"] }

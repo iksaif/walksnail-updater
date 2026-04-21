@@ -1,0 +1,95 @@
+{
+  "hardware": {
+    "AvatarSky": {
+      "steps": [
+        "Copy the Avatar_Sky_<version>.img file to the root of the VTX's SD card.",
+        "Insert the SD card into the VTX.",
+        "Power on the VTX and wait for the LEDs to settle — the upgrade runs automatically.",
+        "Do not power off the unit until the boot LEDs return to their normal pattern.",
+        "After the first successful boot, check the OSD for the new firmware version."
+      ],
+      "source_url": "https://www.caddxfpv.com/pages/download-center",
+      "fetched_at": "2026-04-20T00:00:00Z",
+      "manual_sha256": "bundled-default"
+    },
+    "AvatarMiniSky": {
+      "steps": [
+        "Copy AvatarMini_Sky_<version>.img to the Mini VTX's SD card root.",
+        "Insert the SD into the VTX.",
+        "Power on and wait until the status LED stops blinking.",
+        "Verify the new firmware version in the OSD after reboot."
+      ],
+      "source_url": "https://www.caddxfpv.com/pages/download-center",
+      "fetched_at": "2026-04-20T00:00:00Z",
+      "manual_sha256": "bundled-default"
+    },
+    "MoonlightSky": {
+      "steps": [
+        "Copy AvatarMoonlight_Sky_<version>.img to the Moonlight SD card root.",
+        "Connect the JST jumper cable on the unit.",
+        "Power on the Moonlight and wait for the LEDs to stabilize.",
+        "Hold the unit's button for approximately 8 seconds to initiate the update.",
+        "For a DVR-board-only upgrade, additionally create an empty file named 'independ_upgrade.txt' in the SD root (the app can do this for you)."
+      ],
+      "source_url": "https://www.caddxfpv.com/pages/download-center",
+      "fetched_at": "2026-04-20T00:00:00Z",
+      "manual_sha256": "bundled-default"
+    },
+    "AvatarGnd": {
+      "steps": [
+        "Copy Avatar_Gnd_<version>.img to the goggles' SD card root. Delete any older firmware first.",
+        "Insert the SD card into the goggles.",
+        "Power on the goggles. The upgrade prompt appears on the display.",
+        "Confirm the upgrade and keep the goggles powered on until it reports success."
+      ],
+      "source_url": "https://www.caddxfpv.com/pages/download-center",
+      "fetched_at": "2026-04-20T00:00:00Z",
+      "manual_sha256": "bundled-default"
+    },
+    "GogglesX": {
+      "steps": [
+        "Copy AvatarX_Gnd_<version>.img to the Goggles X SD card root. Do not rename it.",
+        "Delete any older .img firmware files from the SD root.",
+        "Insert the SD card into the Goggles X.",
+        "Power on the goggles. The upgrade prompt appears on the HUD — confirm it.",
+        "Wait for the 'Upgrade success' message before powering off.",
+        "Never flash firmware below 38.44.13 on a Goggles X manufactured since Jan 2025 — it is a permanent brick."
+      ],
+      "source_url": "https://www.caddxfpv.com/pages/download-center",
+      "fetched_at": "2026-04-20T00:00:00Z",
+      "manual_sha256": "bundled-default"
+    },
+    "GogglesL": {
+      "steps": [
+        "Copy AvatarLite_Gnd_<version>.img to the Goggles L SD card root.",
+        "Insert the SD card into the goggles.",
+        "Power on and accept the on-screen upgrade prompt.",
+        "Keep the unit powered until the upgrade success screen appears."
+      ],
+      "source_url": "https://www.caddxfpv.com/pages/download-center",
+      "fetched_at": "2026-04-20T00:00:00Z",
+      "manual_sha256": "bundled-default"
+    },
+    "VrxSE": {
+      "steps": [
+        "Copy AvatarSE_Gnd_<version>.img to the VRX's SD card root.",
+        "Insert the SD into the VRX.",
+        "Power the VRX on and wait for the LED pattern to indicate a successful upgrade."
+      ],
+      "source_url": "https://www.caddxfpv.com/pages/download-center",
+      "fetched_at": "2026-04-20T00:00:00Z",
+      "manual_sha256": "bundled-default"
+    },
+    "ReconHd": {
+      "steps": [
+        "Copy AvatarMini_Gnd_<version>.img to the Recon HD SD card root.",
+        "Insert the SD card into the Recon HD.",
+        "Power on and wait for the upgrade prompt.",
+        "Confirm and keep the unit powered until the success screen."
+      ],
+      "source_url": "https://www.caddxfpv.com/pages/download-center",
+      "fetched_at": "2026-04-20T00:00:00Z",
+      "manual_sha256": "bundled-default"
+    }
+  }
+}

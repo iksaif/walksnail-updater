@@ -1,0 +1,13 @@
+[package]
+name = "hardware"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Walksnail hardware identification, version parsing and safety gates."
+
+[dependencies]
+serde.workspace = true
+regex.workspace = true
+once_cell.workspace = true
+thiserror.workspace = true
