@@ -2,94 +2,115 @@
   "hardware": {
     "AvatarSky": {
       "steps": [
-        "Copy the Avatar_Sky_<version>.img file to the root of the VTX's SD card.",
-        "Insert the SD card into the VTX.",
-        "Power on the VTX and wait for the LEDs to settle — the upgrade runs automatically.",
-        "Do not power off the unit until the boot LEDs return to their normal pattern.",
-        "After the first successful boot, check the OSD for the new firmware version."
+        "Copy Avatar_Sky_<version>.img to the root of the VTX's SD card; delete any older .img first.",
+        "Insert the SD into the VTX.",
+        "Power on the VTX. The upgrade runs automatically and is signalled by the status LEDs.",
+        "Keep power connected until the normal boot LED pattern returns.",
+        "Confirm the new version in the goggles OSD after reboot.",
+        "Avatar GT / GT2 units require firmware >= 39.44.2; flashing below that is a brick risk and the app warns before proceeding."
       ],
-      "source_url": "https://www.caddxfpv.com/pages/download-center",
-      "fetched_at": "2026-04-20T00:00:00Z",
-      "manual_sha256": "bundled-default"
+      "source_url": "https://cdn.shopify.com/s/files/1/0036/3921/4169/files/Avatar_V2_Kit_Quickstart_Guide_EN_CHS_V1.0.pdf?v=1717745449&ref=101",
+      "fetched_at": "2026-04-21T00:00:00Z",
+      "manual_sha256": "hand-curated-2026-04-21"
     },
     "AvatarMiniSky": {
       "steps": [
-        "Copy AvatarMini_Sky_<version>.img to the Mini VTX's SD card root.",
+        "Copy AvatarMini_Sky_<version>.img to the Mini VTX SD card root; remove any older .img.",
         "Insert the SD into the VTX.",
-        "Power on and wait until the status LED stops blinking.",
-        "Verify the new firmware version in the OSD after reboot."
+        "Power on. The Mini VTX flashes automatically; the status LED blinks during the process.",
+        "Wait until the status LED returns to its normal steady pattern before disconnecting power.",
+        "Check the new version in the OSD after reboot."
       ],
-      "source_url": "https://www.caddxfpv.com/pages/download-center",
-      "fetched_at": "2026-04-20T00:00:00Z",
-      "manual_sha256": "bundled-default"
+      "source_url": "https://cdn.shopify.com/s/files/1/0036/3921/4169/files/Avatar_mini_1s_30mm_board_V2_and_V3_Quickstart_Guide_EN_CHS_V1.2.pdf?v=1717745481&ref=101",
+      "fetched_at": "2026-04-21T00:00:00Z",
+      "manual_sha256": "hand-curated-2026-04-21"
     },
     "MoonlightSky": {
       "steps": [
         "Copy AvatarMoonlight_Sky_<version>.img to the Moonlight SD card root.",
-        "Connect the JST jumper cable on the unit.",
-        "Power on the Moonlight and wait for the LEDs to stabilize.",
-        "Hold the unit's button for approximately 8 seconds to initiate the update.",
-        "For a DVR-board-only upgrade, additionally create an empty file named 'independ_upgrade.txt' in the SD root (the app can do this for you)."
+        "For a DVR-board-only upgrade, also drop an empty independ_upgrade.txt in the SD root — the app can do this automatically via the checkbox in the staging wizard.",
+        "Connect the JST jumper between the Moonlight camera and VTX modules.",
+        "Power on the Moonlight and wait for the LEDs to stabilise.",
+        "Press and hold the unit's button for about 8 seconds to start the update.",
+        "Keep power connected until the LEDs return to their normal boot pattern.",
+        "Verify the new version in the goggles OSD after reboot."
       ],
-      "source_url": "https://www.caddxfpv.com/pages/download-center",
-      "fetched_at": "2026-04-20T00:00:00Z",
-      "manual_sha256": "bundled-default"
+      "source_url": "https://cdn.shopify.com/s/files/1/0036/3921/4169/files/Avatar_moonlight_kit-manual_EN__CHS_V1.2.pdf?v=1715932623",
+      "fetched_at": "2026-04-21T00:00:00Z",
+      "manual_sha256": "hand-curated-2026-04-21"
     },
     "AvatarGnd": {
       "steps": [
-        "Copy Avatar_Gnd_<version>.img to the goggles' SD card root. Delete any older firmware first.",
+        "Copy Avatar_Gnd_<version>.img to the goggles SD card root; delete any older .img first.",
         "Insert the SD card into the goggles.",
-        "Power on the goggles. The upgrade prompt appears on the display.",
-        "Confirm the upgrade and keep the goggles powered on until it reports success."
+        "Power on the goggles. An upgrade prompt appears on the display — confirm it.",
+        "Do not power off until the upgrade-success screen is shown.",
+        "Check the new version in the goggles menu after reboot."
       ],
-      "source_url": "https://www.caddxfpv.com/pages/download-center",
-      "fetched_at": "2026-04-20T00:00:00Z",
-      "manual_sha256": "bundled-default"
+      "source_url": "https://cdn.shopify.com/s/files/1/0036/3921/4169/files/Avatar_System_Update_Procedure.pdf?v=1717745800",
+      "fetched_at": "2026-04-21T00:00:00Z",
+      "manual_sha256": "hand-curated-2026-04-21"
     },
     "GogglesX": {
       "steps": [
-        "Copy AvatarX_Gnd_<version>.img to the Goggles X SD card root. Do not rename it.",
-        "Delete any older .img firmware files from the SD root.",
+        "Copy AvatarX_Gnd_<version>.img to the Goggles X SD card root. Do not rename the file. Delete any older firmware images first.",
         "Insert the SD card into the Goggles X.",
-        "Power on the goggles. The upgrade prompt appears on the HUD — confirm it.",
-        "Wait for the 'Upgrade success' message before powering off.",
-        "Never flash firmware below 38.44.13 on a Goggles X manufactured since Jan 2025 — it is a permanent brick."
+        "Power on the goggles. An on-screen prompt asks you to confirm the upgrade.",
+        "Keep the goggles powered until the success screen appears.",
+        "Verify the new version in the goggles menu.",
+        "CRITICAL: Goggles X manufactured since January 2025 use new DDR memory. Flashing below 38.44.13 is a permanent brick. The app refuses to stage firmware below that floor."
       ],
-      "source_url": "https://www.caddxfpv.com/pages/download-center",
-      "fetched_at": "2026-04-20T00:00:00Z",
-      "manual_sha256": "bundled-default"
+      "source_url": "https://cdn.shopify.com/s/files/1/0036/3921/4169/files/Goggles_X_User_Manual_EN_V1.2.pdf?v=1715932778",
+      "fetched_at": "2026-04-21T00:00:00Z",
+      "manual_sha256": "hand-curated-2026-04-21"
     },
     "GogglesL": {
       "steps": [
-        "Copy AvatarLite_Gnd_<version>.img to the Goggles L SD card root.",
+        "Copy AvatarLite_Gnd_<version>.img to the Goggles L SD card root; delete older .img files first.",
         "Insert the SD card into the goggles.",
         "Power on and accept the on-screen upgrade prompt.",
-        "Keep the unit powered until the upgrade success screen appears."
+        "Keep the unit powered until the success screen is shown.",
+        "Verify the new version in the goggles menu after reboot."
       ],
-      "source_url": "https://www.caddxfpv.com/pages/download-center",
-      "fetched_at": "2026-04-20T00:00:00Z",
-      "manual_sha256": "bundled-default"
+      "source_url": "https://cdn.shopify.com/s/files/1/0036/3921/4169/files/Goggles_L_manual_V1.1.pdf?v=1720856838",
+      "fetched_at": "2026-04-21T00:00:00Z",
+      "manual_sha256": "hand-curated-2026-04-21"
     },
     "VrxSE": {
       "steps": [
-        "Copy AvatarSE_Gnd_<version>.img to the VRX's SD card root.",
-        "Insert the SD into the VRX.",
-        "Power the VRX on and wait for the LED pattern to indicate a successful upgrade."
+        "Copy AvatarSE_Gnd_<version>.img to the VRX SD card root.",
+        "Insert the SD card into the VRX.",
+        "Power on. The LEDs indicate upgrade progress.",
+        "Wait for the normal LED pattern before disconnecting power.",
+        "Confirm the firmware version via the VRX status indication (or in the receiving application)."
       ],
-      "source_url": "https://www.caddxfpv.com/pages/download-center",
-      "fetched_at": "2026-04-20T00:00:00Z",
-      "manual_sha256": "bundled-default"
+      "source_url": "https://cdn.shopify.com/s/files/1/0036/3921/4169/files/VRX_User_Manual_EN_CHS_V1.0.pdf?v=1717745502",
+      "fetched_at": "2026-04-21T00:00:00Z",
+      "manual_sha256": "hand-curated-2026-04-21"
     },
     "ReconHd": {
       "steps": [
         "Copy AvatarMini_Gnd_<version>.img to the Recon HD SD card root.",
-        "Insert the SD card into the Recon HD.",
-        "Power on and wait for the upgrade prompt.",
-        "Confirm and keep the unit powered until the success screen."
+        "Insert the SD card into the Recon HD receiver.",
+        "Power on. The upgrade runs automatically and is signalled by the LEDs.",
+        "Keep power connected until the LED pattern returns to normal.",
+        "Check the new firmware version after reboot."
       ],
-      "source_url": "https://www.caddxfpv.com/pages/download-center",
-      "fetched_at": "2026-04-20T00:00:00Z",
-      "manual_sha256": "bundled-default"
+      "source_url": "https://cdn.shopify.com/s/files/1/0036/3921/4169/files/Avatar_mini_1s_30mm_board_V2_and_V3_Quickstart_Guide_EN_CHS_V1.2.pdf?v=1717745481&ref=101",
+      "fetched_at": "2026-04-21T00:00:00Z",
+      "manual_sha256": "hand-curated-2026-04-21"
+    },
+    "AvatarRelay": {
+      "steps": [
+        "Copy Avatar_Relay_<version>.img to the Relay SD card root.",
+        "Insert the SD card into the Relay module.",
+        "Power on the Relay. The LEDs indicate upgrade progress.",
+        "Wait for the normal LED pattern before disconnecting power.",
+        "Verify the new version via the Relay status output."
+      ],
+      "source_url": "https://cdn.shopify.com/s/files/1/0036/3921/4169/files/Repeater_manual_V1.1.pdf?v=1739503265",
+      "fetched_at": "2026-04-21T00:00:00Z",
+      "manual_sha256": "hand-curated-2026-04-21"
     }
   }
 }

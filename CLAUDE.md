@@ -123,25 +123,37 @@ discovers the block after clicking.
 
 ### New / updated manual instructions
 
-Two paths:
+`src-tauri/resources/instructions.json` is **hand-curated** in practice.
+CADDXFPV's PDFs embed their fonts as custom glyph subsets (glyph names
+like `gid01091`) that `pdf-extract` cannot decode — 6 of 8 manuals
+extract zero characters. Copyright also prevents us from dumping PDF
+prose verbatim; we'd have to paraphrase anyway.
 
-1. **Preferred — from upstream PDF.** Bump the URL in
-   `crates/manuals/manifest.toml` if CADDXFPV moved the file, then run:
-   ```bash
-   cargo run -p manuals --bin refresh
-   ```
-   Review the diff in `src-tauri/resources/instructions.json` — PDF
-   extraction is heuristic, so eyeball the steps before committing. The
-   weekly `.github/workflows/refresh-manuals.yml` job does this automatically
-   and opens a PR; you are reviewing that PR like any other.
+**Day-to-day workflow:**
 
-2. **Manual override.** If the PDF extractor produces garbage (section
-   heading changed, columns scrambled, etc.), edit the affected entry in
-   `src-tauri/resources/instructions.json` by hand. Keep `source_url`
-   pointing at the upstream manual; set `manual_sha256` to a descriptive
-   marker like `"manual-override-YYYY-MM-DD"`. Future refreshes will *not*
-   overwrite manually-edited entries as long as the PDF text fails to match
-   the section regex — but add a test PDF or a comment noting the override.
+1. Edit the relevant entry in `src-tauri/resources/instructions.json` by
+   hand. Keep `source_url` pointing at the authoritative PDF. Use a
+   `manual_sha256` value starting with `hand-curated-` (the refresh
+   binary checks that prefix and will not overwrite entries marked this
+   way).
+2. Source the procedure from public references when the PDF is opaque:
+   [walksnail.wiki](https://walksnail.wiki), [oscarliang.com](https://oscarliang.com),
+   the IntoFPV forums, and the community PSA page. Write steps in your
+   own words — do not paste PDF prose, even when extraction succeeds.
+3. Commit.
+
+**The automated refresh still exists** (`cargo run -p manuals --bin refresh`
+and `.github/workflows/refresh-manuals.yml`) for the day `pdf-extract`
+improves — or you swap it for poppler/mutool via a shell-out. It never
+runs at app runtime (design constraint: no runtime PDF parsing). As of
+2026-04, it's effectively a no-op for the Walksnail manuals because
+every entry is `hand-curated-`.
+
+**If you decide to wire up real extraction later:** shell out from
+`crates/manuals` to `pdftotext` (poppler) or `mutool extract`, and have
+the refresh binary note the raw text in a sibling file so future
+reviewers can verify that your hand-written summary still matches the
+source.
 
 Where users get the instruction they see in-app: the frontend loads
 `instructions.json` once at startup (`load_instructions` command) and

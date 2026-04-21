@@ -18,6 +18,21 @@ use manuals::{
 };
 use tracing::{info, warn};
 
+/// Load the existing instructions.json so we can merge new extractions on top
+/// of it. This protects hand-curated entries (marked with
+/// `manual_sha256: "hand-curated-*"`) from being wiped when upstream PDFs
+/// are published with glyph encodings the current extractor can't decode.
+fn load_existing(path: &std::path::Path) -> Instructions {
+    let Ok(bytes) = fs::read(path) else {
+        return Instructions {
+            hardware: BTreeMap::new(),
+        };
+    };
+    serde_json::from_slice::<Instructions>(&bytes).unwrap_or(Instructions {
+        hardware: BTreeMap::new(),
+    })
+}
+
 fn main() -> Result<()> {
     tracing_subscriber::fmt()
         .with_env_filter(
@@ -35,9 +50,8 @@ fn main() -> Result<()> {
     let manuals_dir = default_manuals_dir();
     fs::create_dir_all(&manuals_dir).ok();
 
-    let mut out = Instructions {
-        hardware: BTreeMap::new(),
-    };
+    let out_path = default_output_path();
+    let mut out = load_existing(&out_path);
     for (key, entry) in &manifest.hardware {
         let Some(hw) = parse_hardware_key(key) else {
             warn!(%key, "manifest key doesn't map to a Hardware variant — skipping");
@@ -70,6 +84,14 @@ fn main() -> Result<()> {
                 continue;
             }
         };
+        let previous_was_hand_curated = out
+            .hardware
+            .get(&hw)
+            .is_some_and(|h| h.manual_sha256.starts_with("hand-curated"));
+        if previous_was_hand_curated {
+            warn!(%key, "preserving existing hand-curated entry; new extraction ignored");
+            continue;
+        }
         out.hardware.insert(
             hw,
             HardwareInstructions {
@@ -81,7 +103,6 @@ fn main() -> Result<()> {
         );
     }
 
-    let out_path = default_output_path();
     let json = serde_json::to_string_pretty(&out)?;
     fs::write(&out_path, json).with_context(|| format!("writing {}", out_path.display()))?;
     info!(path = %out_path.display(), count = out.hardware.len(), "wrote instructions");
