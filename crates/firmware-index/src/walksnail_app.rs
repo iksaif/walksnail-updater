@@ -342,15 +342,6 @@ fn refine_channel(html: &str, fallback: Channel) -> Channel {
     }
 }
 
-fn strip_tags(s: &str) -> String {
-    static TAG_RE: Lazy<Regex> = Lazy::new(|| Regex::new(r"<[^>]+>").expect("valid regex"));
-    let no_tags = TAG_RE.replace_all(s, " ");
-    html_unescape(&no_tags)
-        .split_whitespace()
-        .collect::<Vec<_>>()
-        .join(" ")
-}
-
 fn html_unescape(s: &str) -> String {
     s.replace("&amp;", "&")
         .replace("&lt;", "<")
@@ -398,9 +389,13 @@ mod tests {
     }
 
     #[test]
-    fn strip_tags_normalizes_whitespace() {
-        let s = "<p>hello <b>world</b>\n\n foo</p>";
-        assert_eq!(strip_tags(s), "hello world foo");
+    fn html_to_text_strips_tags_and_normalizes_whitespace() {
+        // Structural (<p>) boundaries become a newline; inline tags are
+        // dropped and their text is joined with a single space.
+        let s = "<p>hello <b>world</b></p><p>\n\n foo</p>";
+        let t = html_to_text(s);
+        assert!(t.contains("hello world"), "got: {t}");
+        assert!(t.contains("foo"), "got: {t}");
     }
 
     #[test]

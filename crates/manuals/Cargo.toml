@@ -19,7 +19,7 @@ tracing.workspace = true
 tracing-subscriber.workspace = true
 sha1.workspace = true
 hex.workspace = true
-pdf-extract = "0.9"
+pdf-extract = "0.10"
 toml = "0.8"
 
 [[bin]]
