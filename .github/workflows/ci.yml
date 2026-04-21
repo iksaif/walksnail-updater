@@ -18,7 +18,7 @@ jobs:
         # produced as part of the universal bundle in release.yml.
         os: [macos-14, ubuntu-22.04, windows-latest]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Install stable toolchain
         uses: dtolnay/rust-toolchain@stable
@@ -47,7 +47,7 @@ jobs:
     name: Frontend typecheck + build
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: actions/setup-node@v4
         with:
           node-version: lts/*
@@ -64,7 +64,7 @@ jobs:
       matrix:
         os: [macos-14, ubuntu-22.04, windows-latest]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: dtolnay/rust-toolchain@stable
       - uses: actions/setup-node@v4
         with:

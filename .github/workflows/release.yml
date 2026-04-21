@@ -27,7 +27,7 @@ jobs:
             os: ubuntu-22.04
             args: ""
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: dtolnay/rust-toolchain@stable
       - name: Install extra macOS target
         if: matrix.platform == 'macos-universal'
