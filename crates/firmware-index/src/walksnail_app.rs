@@ -271,8 +271,7 @@ fn extract_notes(html: &str) -> Option<String> {
 fn html_to_text(s: &str) -> String {
     static LI_RE: Lazy<Regex> =
         Lazy::new(|| Regex::new(r"(?is)<li[^>]*>(?P<t>.*?)</li>").expect("valid regex"));
-    static BR_RE: Lazy<Regex> =
-        Lazy::new(|| Regex::new(r"(?is)<br\s*/?>").expect("valid regex"));
+    static BR_RE: Lazy<Regex> = Lazy::new(|| Regex::new(r"(?is)<br\s*/?>").expect("valid regex"));
     static BLOCK_END_RE: Lazy<Regex> = Lazy::new(|| {
         Regex::new(r"(?is)</(?:p|div|h[1-6]|ul|ol|section|article)\s*>").expect("valid regex")
     });
@@ -442,7 +441,10 @@ mod tests {
             <h3>Downloads</h3>
         "#;
         let notes = extract_notes(html).expect("should extract");
-        assert!(notes.contains("• Race mode with stabilized latency"), "got: {notes}");
+        assert!(
+            notes.contains("• Race mode with stabilized latency"),
+            "got: {notes}"
+        );
         assert!(notes.contains("• Fixed DVR playback glitch"));
     }
 
