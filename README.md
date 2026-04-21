@@ -9,8 +9,8 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/corentin-chary/walksnail-updater/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/corentin-chary/walksnail-updater/ci.yml?branch=main&label=CI" alt="CI"/></a>
-  <a href="https://github.com/corentin-chary/walksnail-updater/releases"><img src="https://img.shields.io/github/v/release/corentin-chary/walksnail-updater?include_prereleases" alt="Latest release"/></a>
+  <a href="https://github.com/iksaif/walksnail-updater/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/iksaif/walksnail-updater/ci.yml?branch=main&label=CI" alt="CI"/></a>
+  <a href="https://github.com/iksaif/walksnail-updater/releases"><img src="https://img.shields.io/github/v/release/iksaif/walksnail-updater?include_prereleases" alt="Latest release"/></a>
   <img src="https://img.shields.io/badge/platforms-macOS%20%7C%20Windows%20%7C%20Linux-0F172A" alt="Platforms"/>
   <img src="https://img.shields.io/badge/built%20with-Tauri%202-F59E0B" alt="Tauri"/>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="License"/></a>
