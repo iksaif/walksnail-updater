@@ -40,9 +40,8 @@ it across later.
 
 ## Screenshot
 
-<!-- Replace with a real screenshot once the app has run on a machine. -->
 <p align="center">
-  <img src="assets/screenshot.png" width="720" alt="App screenshot (placeholder)"/>
+  <img src="assets/screenshot.png" width="720" alt="Walksnail Updater main view"/>
 </p>
 
 ## Install
