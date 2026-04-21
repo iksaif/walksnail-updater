@@ -94,7 +94,11 @@ fn scan_root_files(root: &Path, contents: &mut SdContents) {
                 contents.is_walksnail = true;
                 contents.signals.push(Signal::IndependUpgrade);
             }
-            "debug_info_in_srt.txt" | "avatar_time.txt" => {
+            // Avatar_info.txt appears on Goggles X (and likely others) with
+            // key=value lines such as "wifi=on". Generic across Walksnail
+            // devices — confirms the SD belongs to *some* Walksnail but not
+            // which variant.
+            "debug_info_in_srt.txt" | "avatar_time.txt" | "avatar_info.txt" => {
                 contents.is_walksnail = true;
                 contents.signals.push(Signal::MarkerFile {
                     name: name.to_string(),
@@ -193,6 +197,17 @@ mod tests {
         fs::write(dir.path().join("independ_upgrade.txt"), b"").unwrap();
         let c = scan(dir.path());
         assert!(c.is_walksnail);
+    }
+
+    #[test]
+    fn detects_avatar_info_marker() {
+        let dir = setup();
+        fs::write(dir.path().join("Avatar_info.txt"), b"wifi=on\n").unwrap();
+        let c = scan(dir.path());
+        assert!(c.is_walksnail);
+        assert!(c.signals.iter().any(
+            |s| matches!(s, Signal::MarkerFile { name } if name.eq_ignore_ascii_case("Avatar_info.txt"))
+        ));
     }
 
     #[test]

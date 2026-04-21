@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import {
   FirmwareRelease,
   HARDWARE_LABELS,
@@ -8,16 +8,21 @@ import {
   versionString,
 } from "@/lib/ipc";
 import { useStore } from "@/state/store";
-import { DownloadIcon, RevealIcon, StageIcon } from "@/components/Icons";
+import { DownloadIcon, InfoIcon, RevealIcon, StageIcon } from "@/components/Icons";
 import IconButton from "@/components/IconButton";
 import HardwareIcon from "@/components/HardwareIcon";
 import ProgressBar from "@/components/ProgressBar";
 import ChannelBadge from "@/components/ChannelBadge";
+import { useState } from "react";
+import type { HardwareInstructions } from "@/lib/ipc";
 
 export default function HistoryView({ hardware }: { hardware: Hardware }) {
   const index = useStore((s) => s.index);
   const setView = useStore((s) => s.setView);
   const sdScan = useStore((s) => s.sdScan);
+  const activeSd = useStore((s) => s.activeSd);
+  const manualMounts = useStore((s) => s.manualMounts);
+  const instructions = useStore((s) => s.instructions[hardware]);
 
   const releases = useMemo(() => {
     if (!index) return [] as FirmwareRelease[];
@@ -30,6 +35,10 @@ export default function HistoryView({ hardware }: { hardware: Hardware }) {
     (sdScan?.contents.variant === hardware &&
       (sdScan.contents.running_version ?? sdScan.contents.staged_version)) ||
     null;
+
+  const canStage =
+    sdScan?.contents.variant === hardware ||
+    (!!activeSd && manualMounts.includes(activeSd));
 
   return (
     <section className="space-y-4">
@@ -50,6 +59,14 @@ export default function HistoryView({ hardware }: { hardware: Hardware }) {
           {releases.length} release{releases.length === 1 ? "" : "s"}
         </span>
       </header>
+      {instructions ? (
+        <ProcedureCard hardware={hardware} instructions={instructions} />
+      ) : (
+        <div className="rounded border border-dashed border-brand-muted/30 p-3 text-xs text-brand-dim">
+          No flashing procedure bundled for {HARDWARE_LABELS[hardware]} yet —
+          consult the upstream manual until we parse it.
+        </div>
+      )}
       <ul className="space-y-2">
         {releases.map((r, idx) => (
           <VersionRow
@@ -57,7 +74,7 @@ export default function HistoryView({ hardware }: { hardware: Hardware }) {
             release={r}
             hardware={hardware}
             current={currentVersion}
-            canStage={sdScan?.contents.variant === hardware}
+            canStage={canStage}
             defaultOpen={idx === 0}
           />
         ))}
@@ -70,6 +87,51 @@ export default function HistoryView({ hardware }: { hardware: Hardware }) {
 /// 3 visible lines requirement at typical card widths without counting DOM
 /// lines explicitly.
 const COLLAPSED_NOTE_CHARS = 240;
+
+function ProcedureCard(props: {
+  hardware: Hardware;
+  instructions: HardwareInstructions;
+}) {
+  const { hardware, instructions } = props;
+  const [open, setOpen] = useState(true);
+  return (
+    <section className="rounded border border-brand-muted/30 bg-white/5 p-3 text-sm">
+      <header className="flex items-center gap-2">
+        <InfoIcon className="h-4 w-4 text-brand-info" />
+        <h3 className="font-medium">
+          Flashing procedure · {HARDWARE_LABELS[hardware]}
+        </h3>
+        <button
+          onClick={() => setOpen((v) => !v)}
+          className="ml-auto text-xs text-brand-muted underline hover:text-brand-fg"
+        >
+          {open ? "Collapse" : "Expand"}
+        </button>
+      </header>
+      {open && (
+        <>
+          <ol className="mt-3 list-decimal space-y-1.5 pl-5 text-sm text-brand-dim">
+            {instructions.steps.map((s, i) => (
+              <li key={i}>{s}</li>
+            ))}
+          </ol>
+          <p className="mt-3 text-xs text-brand-muted">
+            Sourced from{" "}
+            <button
+              onClick={() => ipc.openUrl(instructions.source_url)}
+              className="underline hover:text-brand-fg"
+            >
+              the upstream manual
+            </button>
+            . The instructions shipped with this build may be approximate;
+            always double-check against the manufacturer's guide before
+            flashing.
+          </p>
+        </>
+      )}
+    </section>
+  );
+}
 
 function VersionRow(props: {
   release: FirmwareRelease;

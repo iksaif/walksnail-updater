@@ -110,7 +110,14 @@ function HardwareCard(props: {
 }) {
   const { hardware, release, onHistory, onStage } = props;
   const sdScan = useStore((s) => s.sdScan);
+  const activeSd = useStore((s) => s.activeSd);
+  const manualMounts = useStore((s) => s.manualMounts);
   const matchesSd = sdScan?.contents.variant === hardware;
+  // If the user explicitly picked an SD we trust their choice even when the
+  // scanner didn't recognise the card — otherwise the "Pick SD card…" escape
+  // hatch wouldn't actually let them stage anything.
+  const isManualTarget = !!activeSd && manualMounts.includes(activeSd);
+  const canStage = matchesSd || isManualTarget;
   const download = useStore((s) =>
     release ? s.downloads[release.downloads.find((d) => d.hardware === hardware)?.filename ?? ""] : undefined,
   );
@@ -192,10 +199,14 @@ function HardwareCard(props: {
                   <DownloadIcon className="h-4 w-4" />
                 </IconButton>
               )}
-              {matchesSd && (
+              {canStage && (
                 <IconButton
                   label="Stage to SD"
-                  title="Stage this firmware to the detected SD card"
+                  title={
+                    matchesSd
+                      ? "Stage this firmware to the detected SD card"
+                      : "Stage to the manually picked SD (auto-detection skipped)"
+                  }
                   variant="primary"
                   onClick={() => onStage(release)}
                 >
