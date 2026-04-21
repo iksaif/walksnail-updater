@@ -1,0 +1,38 @@
+[package]
+name = "walksnail-updater"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Unofficial cross-platform Walksnail Avatar HD firmware updater."
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+hardware.workspace = true
+firmware-index.workspace = true
+sdcard.workspace = true
+tauri = { version = "2", features = [] }
+tauri-plugin-dialog = "2"
+tauri-plugin-fs = "2"
+tauri-plugin-opener = "2"
+tauri-plugin-os = "2"
+tauri-plugin-shell = "2"
+serde.workspace = true
+serde_json.workspace = true
+tokio = { workspace = true, features = ["sync", "rt-multi-thread", "macros"] }
+reqwest.workspace = true
+anyhow.workspace = true
+thiserror.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+sha1.workspace = true
+hex.workspace = true
+futures-util.workspace = true
+dirs = "5"
+
+[features]
+# this feature is used for production builds or when `devPath` points to the filesystem
+# DO NOT REMOVE!!
+custom-protocol = ["tauri/custom-protocol"]

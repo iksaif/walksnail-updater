@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#FBBF24"/>
+    </linearGradient>
+    <filter id="soft" x="-5%" y="-5%" width="110%" height="110%">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+  </defs>
+
+  <!-- Rounded badge -->
+  <rect x="0" y="0" width="1024" height="1024" rx="220" ry="220" fill="url(#bg)"/>
+
+  <!-- Snail body: a gentle hump sitting on a ground line -->
+  <g stroke="#F8FAFC" stroke-width="38" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- Ground -->
+    <line x1="180" y1="780" x2="844" y2="780"/>
+    <!-- Body: head raised to the right, tail slope to the left -->
+    <path d="M 220 780 Q 310 720 430 720 L 700 720 Q 780 720 820 660"/>
+    <!-- Eye stalks -->
+    <path d="M 780 660 L 790 560"/>
+    <path d="M 820 660 L 860 580"/>
+    <circle cx="790" cy="548" r="14" fill="#F8FAFC" stroke="none"/>
+    <circle cx="866" cy="568" r="14" fill="#F8FAFC" stroke="none"/>
+  </g>
+
+  <!-- Shell: concentric arcs forming an upward chevron / signal boost cue -->
+  <g fill="none" stroke="url(#accent)" stroke-linecap="round">
+    <circle cx="500" cy="560" r="200" stroke-width="0" fill="url(#accent)" opacity="0.12"/>
+    <circle cx="500" cy="560" r="180" stroke-width="14" opacity="0.35"/>
+    <circle cx="500" cy="560" r="140" stroke-width="18" opacity="0.55"/>
+    <circle cx="500" cy="560" r="100" stroke-width="22" opacity="0.8"/>
+  </g>
+
+  <!-- Up arrow inside the shell — the 'updater' cue -->
+  <g fill="url(#accent)" stroke="#0F172A" stroke-width="10" stroke-linejoin="round">
+    <path d="M 500 470 L 580 580 L 540 580 L 540 660 L 460 660 L 460 580 L 420 580 Z"/>
+  </g>
+</svg>

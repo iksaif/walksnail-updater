@@ -1,0 +1,41 @@
+# Rust
+/target
+**/*.rs.bk
+Cargo.lock.bak
+
+# Node
+node_modules
+dist
+.vite
+
+# Tauri
+src-tauri/target
+src-tauri/gen
+
+# Env / editor
+.env
+.env.local
+.DS_Store
+.idea
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/launch.json
+
+# Generated resources (large PDFs stay checked in deliberately; raw downloads don't)
+src-tauri/resources/manuals/*.tmp
+
+# Release artifacts
+*.dmg
+*.msi
+*.AppImage
+*.deb
+
+# Claude Code per-user state (shared .claude/settings.json is fine to commit)
+.claude/settings.local.json
+.claude/memory/
+.claude/plans/
+
+# Editors
+.fleet
+.zed

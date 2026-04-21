@@ -1,0 +1,44 @@
+{
+  "$schema": "https://schema.tauri.app/config/2.0.0",
+  "productName": "Walksnail Updater",
+  "version": "0.1.0",
+  "identifier": "dev.corentin.walksnail-updater",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "beforeBuildCommand": "npm run build",
+    "devUrl": "http://localhost:1420",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "Walksnail Updater",
+        "width": 1100,
+        "height": 780,
+        "minWidth": 900,
+        "minHeight": 640,
+        "resizable": true,
+        "fullscreen": false
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["dmg", "app", "msi", "nsis", "appimage", "deb"],
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "resources": ["resources/**/*"],
+    "category": "Utility",
+    "copyright": "Unofficial · not affiliated with Walksnail or CADDXFPV",
+    "shortDescription": "Unofficial Walksnail firmware updater",
+    "longDescription": "Unofficial cross-platform firmware updater for Walksnail Avatar HD. Fetches firmware releases, detects SD cards, and stages updates with safety checks. Not affiliated with Walksnail, CADDXFPV, or any related entity."
+  }
+}
