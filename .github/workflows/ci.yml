@@ -13,7 +13,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-14, macos-13, ubuntu-22.04, windows-latest]
+        # macos-13 (Intel) removed: GitHub retired that runner image in
+        # 2026-04. macos-14 covers Apple Silicon; Intel macOS builds are
+        # produced as part of the universal bundle in release.yml.
+        os: [macos-14, ubuntu-22.04, windows-latest]
     steps:
       - uses: actions/checkout@v4
 
