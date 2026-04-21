@@ -30,7 +30,7 @@ tracing-subscriber.workspace = true
 sha1.workspace = true
 hex.workspace = true
 futures-util.workspace = true
-dirs = "5"
+dirs = "6"
 
 [features]
 # this feature is used for production builds or when `devPath` points to the filesystem
