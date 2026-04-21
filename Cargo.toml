@@ -12,7 +12,7 @@ members = [
 version = "0.1.0"
 edition = "2021"
 license = "MIT"
-repository = "https://github.com/corentin-chary/walksnail-updater"
+repository = "https://github.com/iksaif/walksnail-updater"
 rust-version = "1.77"
 
 [workspace.dependencies]
