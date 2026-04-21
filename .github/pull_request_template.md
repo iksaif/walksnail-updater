@@ -8,7 +8,7 @@
 - [ ] `cargo test --workspace --exclude walksnail-updater` passes
 - [ ] `npm run build` passes
 - [ ] If you touched the firmware safety gates or the filename/version parsers, unit tests were added
-- [ ] If you touched `crates/manuals/manifest.toml`, you ran `cargo run -p manuals --bin refresh` and committed the regenerated `src-tauri/resources/instructions.json`
+- [ ] If you touched `src-tauri/resources/instructions.json`, you double-checked the procedure against the `source_url` manual and the public PSA page
 
 ## Disclaimer reminder
 

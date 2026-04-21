@@ -26,9 +26,7 @@ export default function InstructionCard({
         ))}
       </ol>
       <p className="mt-4 text-xs text-brand-muted">
-        Sourced from the upstream manual (SHA1{" "}
-        <span className="font-mono">{instructions.manual_sha256.slice(0, 8)}…</span>,
-        fetched {new Date(instructions.fetched_at).toLocaleDateString()}).{" "}
+        Summarised from the public procedure.{" "}
         <button
           onClick={() => ipc.openUrl(instructions.source_url)}
           className="underline hover:text-brand-fg"

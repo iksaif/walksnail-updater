@@ -4,7 +4,6 @@ members = [
     "crates/hardware",
     "crates/firmware-index",
     "crates/sdcard",
-    "crates/manuals",
     "src-tauri",
 ]
 
@@ -37,7 +36,6 @@ walkdir = "2"
 hardware = { path = "crates/hardware" }
 firmware-index = { path = "crates/firmware-index" }
 sdcard = { path = "crates/sdcard" }
-manuals = { path = "crates/manuals" }
 
 [profile.release]
 opt-level = "s"

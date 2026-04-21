@@ -2,115 +2,98 @@
   "hardware": {
     "AvatarSky": {
       "steps": [
-        "Copy Avatar_Sky_<version>.img to the root of the VTX's SD card; delete any older .img first.",
-        "Insert the SD into the VTX.",
-        "Power on the VTX. The upgrade runs automatically and is signalled by the status LEDs.",
-        "Keep power connected until the normal boot LED pattern returns.",
-        "Confirm the new version in the goggles OSD after reboot.",
-        "Avatar GT / GT2 units require firmware >= 39.44.2; flashing below that is a brick risk and the app warns before proceeding."
+        "Power the VTX and connect it to a computer over USB so it mounts as storage.",
+        "Copy Avatar_Sky_<version>.img to the root of the VTX storage; do not rename the file, and remove any older .img files first if present.",
+        "Safely disconnect USB and keep the VTX powered with adequate cooling.",
+        "After the unit finishes booting, press and hold the Link button for about 8 seconds to start the firmware update.",
+        "Keep power connected until the LED pattern returns to its normal state.",
+        "Confirm the new version in the goggles OSD after reboot."
       ],
-      "source_url": "https://cdn.shopify.com/s/files/1/0036/3921/4169/files/Avatar_V2_Kit_Quickstart_Guide_EN_CHS_V1.0.pdf?v=1717745449&ref=101",
-      "fetched_at": "2026-04-21T00:00:00Z",
-      "manual_sha256": "hand-curated-2026-04-21"
+      "source_url": "https://cdn.shopify.com/s/files/1/0036/3921/4169/files/Avatar_System_Update_Procedure.pdf?v=1717745800"
     },
     "AvatarMiniSky": {
       "steps": [
-        "Copy AvatarMini_Sky_<version>.img to the Mini VTX SD card root; remove any older .img.",
-        "Insert the SD into the VTX.",
-        "Power on. The Mini VTX flashes automatically; the status LED blinks during the process.",
-        "Wait until the status LED returns to its normal steady pattern before disconnecting power.",
+        "Copy AvatarMini_Sky_<version>.img to the root of the Mini VTX storage.",
+        "Do not rename the file, and remove any older .img files first if present.",
+        "Power on the Mini VTX and allow it to finish initial boot.",
+        "Press and hold the Link button for about 8 seconds to start the firmware update.",
+        "Keep power connected until the LED returns to its normal pattern.",
         "Check the new version in the OSD after reboot."
       ],
-      "source_url": "https://cdn.shopify.com/s/files/1/0036/3921/4169/files/Avatar_mini_1s_30mm_board_V2_and_V3_Quickstart_Guide_EN_CHS_V1.2.pdf?v=1717745481&ref=101",
-      "fetched_at": "2026-04-21T00:00:00Z",
-      "manual_sha256": "hand-curated-2026-04-21"
+      "source_url": "https://cdn.shopify.com/s/files/1/0036/3921/4169/files/Avatar_mini_1s_30mm_board_V2_and_V3_Quickstart_Guide_EN_CHS_V1.2.pdf?v=1717745481&ref=101"
     },
     "MoonlightSky": {
       "steps": [
-        "Copy AvatarMoonlight_Sky_<version>.img to the Moonlight SD card root.",
-        "For a DVR-board-only upgrade, also drop an empty independ_upgrade.txt in the SD root — the app can do this automatically via the checkbox in the staging wizard.",
-        "Connect the JST jumper between the Moonlight camera and VTX modules.",
-        "Power on the Moonlight and wait for the LEDs to stabilise.",
-        "Press and hold the unit's button for about 8 seconds to start the update.",
+        "Connect the Moonlight VTX to a computer using the official Moonlight USB cable so the device storage is accessible.",
+        "Copy AvatarMoonlight_Sky_<version>.img to the device storage root.",
+        "Do not rename the file, and remove any older .img files first if present.",
+        "Power the unit correctly and allow it to finish booting.",
+        "Press and hold the bind/link button for about 8 seconds to start the firmware update.",
         "Keep power connected until the LEDs return to their normal boot pattern.",
         "Verify the new version in the goggles OSD after reboot."
       ],
-      "source_url": "https://cdn.shopify.com/s/files/1/0036/3921/4169/files/Avatar_moonlight_kit-manual_EN__CHS_V1.2.pdf?v=1715932623",
-      "fetched_at": "2026-04-21T00:00:00Z",
-      "manual_sha256": "hand-curated-2026-04-21"
+      "source_url": "https://cdn.shopify.com/s/files/1/0036/3921/4169/files/Avatar_moonlight_kit-manual_EN__CHS_V1.2.pdf?v=1715932623"
     },
     "AvatarGnd": {
       "steps": [
-        "Copy Avatar_Gnd_<version>.img to the goggles SD card root; delete any older .img first.",
-        "Insert the SD card into the goggles.",
-        "Power on the goggles. An upgrade prompt appears on the display — confirm it.",
-        "Do not power off until the upgrade-success screen is shown.",
-        "Check the new version in the goggles menu after reboot."
+        "Format the SD card in the goggles first.",
+        "Copy Avatar_Gnd_<version>.img to the root of the goggles SD card; do not rename the file, and remove any older .img files first if present.",
+        "Insert the SD card into the goggles and power them on.",
+        "Wait until the goggles reach the standby screen.",
+        "Press and hold the red Link button for about 8 seconds to start the firmware update.",
+        "Do not power off during the update.",
+        "After the upgrade completes and the goggles reboot, enter the settings menu and perform RESET.",
+        "Check the new version in the goggles menu."
       ],
-      "source_url": "https://cdn.shopify.com/s/files/1/0036/3921/4169/files/Avatar_System_Update_Procedure.pdf?v=1717745800",
-      "fetched_at": "2026-04-21T00:00:00Z",
-      "manual_sha256": "hand-curated-2026-04-21"
+      "source_url": "https://cdn.shopify.com/s/files/1/0036/3921/4169/files/Avatar_System_Update_Procedure.pdf?v=1717745800"
     },
     "GogglesX": {
       "steps": [
-        "Copy AvatarX_Gnd_<version>.img to the Goggles X SD card root. Do not rename the file. Delete any older firmware images first.",
-        "Insert the SD card into the Goggles X.",
-        "Power on the goggles. An on-screen prompt asks you to confirm the upgrade.",
-        "Keep the goggles powered until the success screen appears.",
+        "Copy AvatarX_Gnd_<version>.img to the root of the Goggles X SD card; do not rename the file, and delete any older firmware images first.",
+        "Insert the SD card into the Goggles X and power them on.",
+        "After initialization, press and hold the Link button for about 8 seconds to start the firmware update.",
+        "Keep the goggles powered until the update finishes and normal boot resumes.",
         "Verify the new version in the goggles menu.",
-        "CRITICAL: Goggles X manufactured since January 2025 use new DDR memory. Flashing below 38.44.13 is a permanent brick. The app refuses to stage firmware below that floor."
+        "CRITICAL: New-batch Goggles X units with the newer DDR memory must not be downgraded below 38.44.13 or they may be permanently bricked."
       ],
-      "source_url": "https://cdn.shopify.com/s/files/1/0036/3921/4169/files/Goggles_X_User_Manual_EN_V1.2.pdf?v=1715932778",
-      "fetched_at": "2026-04-21T00:00:00Z",
-      "manual_sha256": "hand-curated-2026-04-21"
+      "source_url": "https://cdn.shopify.com/s/files/1/0036/3921/4169/files/Goggles_X_User_Manual_EN_V1.2.pdf?v=1715932778"
     },
     "GogglesL": {
       "steps": [
-        "Copy AvatarLite_Gnd_<version>.img to the Goggles L SD card root; delete older .img files first.",
-        "Insert the SD card into the goggles.",
-        "Power on and accept the on-screen upgrade prompt.",
-        "Keep the unit powered until the success screen is shown.",
+        "Copy AvatarLite_Gnd_<version>.img to the root of the Goggles L SD card; do not rename the file, and delete any older .img files first.",
+        "Insert the SD card into the goggles and power them on.",
+        "Allow initialization to complete.",
+        "Press and hold the Link button for about 8 seconds to start the firmware update.",
+        "Keep the unit powered until the update completes and the beeping stops.",
         "Verify the new version in the goggles menu after reboot."
       ],
-      "source_url": "https://cdn.shopify.com/s/files/1/0036/3921/4169/files/Goggles_L_manual_V1.1.pdf?v=1720856838",
-      "fetched_at": "2026-04-21T00:00:00Z",
-      "manual_sha256": "hand-curated-2026-04-21"
+      "source_url": "https://cdn.shopify.com/s/files/1/0036/3921/4169/files/Goggles_L_manual_V1.1.pdf?v=1720856838"
     },
     "VrxSE": {
       "steps": [
-        "Copy AvatarSE_Gnd_<version>.img to the VRX SD card root.",
-        "Insert the SD card into the VRX.",
-        "Power on. The LEDs indicate upgrade progress.",
-        "Wait for the normal LED pattern before disconnecting power.",
-        "Confirm the firmware version via the VRX status indication (or in the receiving application)."
+        "Copy AvatarSE_Gnd_<version>.img to the root of the VRX TF/SD card; do not rename the file, and remove any older .img files first if present.",
+        "Insert the card into the VRX and power it on.",
+        "Press and hold the REC button for about 6 seconds to start the firmware update.",
+        "Wait for the update to finish and the unit to reboot normally.",
+        "Confirm the firmware version afterward."
       ],
-      "source_url": "https://cdn.shopify.com/s/files/1/0036/3921/4169/files/VRX_User_Manual_EN_CHS_V1.0.pdf?v=1717745502",
-      "fetched_at": "2026-04-21T00:00:00Z",
-      "manual_sha256": "hand-curated-2026-04-21"
+      "source_url": "https://cdn.shopify.com/s/files/1/0036/3921/4169/files/VRX_User_Manual_EN_CHS_V1.0.pdf?v=1717745502"
     },
     "ReconHd": {
-      "steps": [
-        "Copy AvatarMini_Gnd_<version>.img to the Recon HD SD card root.",
-        "Insert the SD card into the Recon HD receiver.",
-        "Power on. The upgrade runs automatically and is signalled by the LEDs.",
-        "Keep power connected until the LED pattern returns to normal.",
-        "Check the new firmware version after reboot."
-      ],
-      "source_url": "https://cdn.shopify.com/s/files/1/0036/3921/4169/files/Avatar_mini_1s_30mm_board_V2_and_V3_Quickstart_Guide_EN_CHS_V1.2.pdf?v=1717745481&ref=101",
-      "fetched_at": "2026-04-21T00:00:00Z",
-      "manual_sha256": "hand-curated-2026-04-21"
+      "steps": [],
+      "source_url": "https://cdn.shopify.com/s/files/1/0036/3921/4169/files/Avatar_mini_1s_30mm_board_V2_and_V3_Quickstart_Guide_EN_CHS_V1.2.pdf?v=1717745481&ref=101"
     },
     "AvatarRelay": {
       "steps": [
-        "Copy Avatar_Relay_<version>.img to the Relay SD card root.",
-        "Insert the SD card into the Relay module.",
-        "Power on the Relay. The LEDs indicate upgrade progress.",
-        "Wait for the normal LED pattern before disconnecting power.",
+        "Power on the Relay.",
+        "Press and hold the VTX frequency binding key for about 8 seconds to enter USB mass-storage flashing mode.",
+        "Connect the Relay to a computer over USB.",
+        "Copy Avatar_Relay_<version>.img to the device storage root; do not rename the file, and remove any older .img files first if present.",
+        "Disconnect USB so the Relay reboots and starts the firmware update automatically.",
+        "Wait until the LED returns to its normal success pattern.",
         "Verify the new version via the Relay status output."
       ],
-      "source_url": "https://cdn.shopify.com/s/files/1/0036/3921/4169/files/Repeater_manual_V1.1.pdf?v=1739503265",
-      "fetched_at": "2026-04-21T00:00:00Z",
-      "manual_sha256": "hand-curated-2026-04-21"
+      "source_url": "https://cdn.shopify.com/s/files/1/0036/3921/4169/files/Repeater_manual_V1.1.pdf?v=1739503265"
     }
   }
 }

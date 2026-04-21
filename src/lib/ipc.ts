@@ -186,8 +186,6 @@ export const ipc = {
 export interface HardwareInstructions {
   steps: string[];
   source_url: string;
-  fetched_at: string;
-  manual_sha256: string;
 }
 
 export async function onSdEvent(

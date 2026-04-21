@@ -18,13 +18,11 @@ CADDXFPV download center).
 ```
 crates/
   hardware/         pure lib: Hardware enum, Version, filename regex, safety gates
-  firmware-index/   fetch + normalize D3VL JSON, scrape CADDXFPV fallback
+  firmware-index/   fetch + normalize walksnail.app; D3VL + CADDXFPV fallbacks
   sdcard/           removable-drive watcher, multi-signal scan, stage+SHA1+copy
-  manuals/          build-time: download PDFs, extract steps -> instructions.json
 src-tauri/          Tauri app shell, #[command] handlers in src/commands.rs
 src/                React frontend (views/, components/, lib/ipc.ts, state/store.ts)
-src-tauri/resources/instructions.json   bundled step-by-step per hardware
-crates/manuals/manifest.toml            source of truth for PDF URLs per hardware
+src-tauri/resources/instructions.json   hand-curated per-device flashing steps
 ```
 
 Business logic lives in the crates so it stays unit-testable. `commands.rs`
@@ -59,7 +57,7 @@ a new firmware version ships. If the schema changes, adjust
 
 ### New hardware variant
 
-Touch exactly these four places, in this order:
+Touch exactly these three places, in this order:
 
 1. `crates/hardware/src/lib.rs`
    - Add a variant to `Hardware`.
@@ -72,12 +70,12 @@ Touch exactly these four places, in this order:
    - Add at least one row to the filename-regex test table and one to
      `canonical_filename_roundtrip`. Both tests are table-driven — one line
      each.
-2. `crates/manuals/src/lib.rs::parse_hardware_key` — add the match arm.
-3. `crates/manuals/manifest.toml` — add the upstream PDF URL. Then run
-   `cargo run -p manuals --bin refresh` locally to regenerate
-   `src-tauri/resources/instructions.json`. Commit both.
-4. `src/lib/ipc.ts` — add the variant to the `Hardware` union, to
-   `HARDWARE_LIST`, and to `HARDWARE_LABELS`.
+2. `src-tauri/resources/instructions.json` — add an entry with `steps`
+   and a `source_url` pointing at the upstream manual. Write the steps
+   in your own words from the public procedure.
+3. `src/lib/ipc.ts` — add the variant to the `Hardware` union, to
+   `HARDWARE_LIST`, and to `HARDWARE_LABELS`. Also add a matching
+   silhouette in `src/components/HardwareIcon.tsx`.
 
 The hardware tests will fail fast if the canonical filename regex doesn't
 round-trip. If you see `parse_filename_table` red, you forgot step 1.
@@ -123,37 +121,20 @@ discovers the block after clicking.
 
 ### New / updated manual instructions
 
-`src-tauri/resources/instructions.json` is **hand-curated** in practice.
-CADDXFPV's PDFs embed their fonts as custom glyph subsets (glyph names
-like `gid01091`) that `pdf-extract` cannot decode — 6 of 8 manuals
-extract zero characters. Copyright also prevents us from dumping PDF
-prose verbatim; we'd have to paraphrase anyway.
+`src-tauri/resources/instructions.json` is **hand-curated**. Each entry
+has `steps: string[]` (per-device flashing procedure) and `source_url`
+(link to the authoritative manual). Write the steps in your own words
+from the publicly-documented procedure; do not paste PDF prose.
 
-**Day-to-day workflow:**
+Good sources for the public procedure:
+[walksnail.wiki](https://walksnail.wiki),
+[oscarliang.com](https://oscarliang.com),
+the IntoFPV forums, and the community PSA page.
 
-1. Edit the relevant entry in `src-tauri/resources/instructions.json` by
-   hand. Keep `source_url` pointing at the authoritative PDF. Use a
-   `manual_sha256` value starting with `hand-curated-` (the refresh
-   binary checks that prefix and will not overwrite entries marked this
-   way).
-2. Source the procedure from public references when the PDF is opaque:
-   [walksnail.wiki](https://walksnail.wiki), [oscarliang.com](https://oscarliang.com),
-   the IntoFPV forums, and the community PSA page. Write steps in your
-   own words — do not paste PDF prose, even when extraction succeeds.
-3. Commit.
-
-**The automated refresh still exists** (`cargo run -p manuals --bin refresh`
-and `.github/workflows/refresh-manuals.yml`) for the day `pdf-extract`
-improves — or you swap it for poppler/mutool via a shell-out. It never
-runs at app runtime (design constraint: no runtime PDF parsing). As of
-2026-04, it's effectively a no-op for the Walksnail manuals because
-every entry is `hand-curated-`.
-
-**If you decide to wire up real extraction later:** shell out from
-`crates/manuals` to `pdftotext` (poppler) or `mutool extract`, and have
-the refresh binary note the raw text in a sibling file so future
-reviewers can verify that your hand-written summary still matches the
-source.
+We deliberately do **not** parse PDFs at build or run time. CADDXFPV's
+PDFs embed custom-encoded font subsets that pdf-extract cannot decode,
+copyright limits verbatim reuse, and having instructions as plain JSON
+is auditable in a way parsed prose is not.
 
 Where users get the instruction they see in-app: the frontend loads
 `instructions.json` once at startup (`load_instructions` command) and
