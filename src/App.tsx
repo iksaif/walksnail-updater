@@ -9,11 +9,15 @@ import Onboarding from "@/views/Onboarding";
 import About from "@/views/About";
 import Footer from "@/components/Footer";
 import DisclaimerBanner from "@/components/DisclaimerBanner";
+import LoadingOverlay from "@/components/LoadingOverlay";
 
 export default function App() {
   const view = useStore((s) => s.view);
   const init = useStore((s) => s.init);
   const onboarded = useStore((s) => s.onboarded);
+  const index = useStore((s) => s.index);
+  const indexError = useStore((s) => s.indexError);
+  const isFetchingIndex = onboarded === true && index === null && !indexError;
 
   useEffect(() => {
     init();
@@ -45,6 +49,9 @@ export default function App() {
         {view.kind === "about" && <About />}
       </main>
       <Footer />
+      {isFetchingIndex && (
+        <LoadingOverlay message="Fetching firmware index from walksnail.app…" />
+      )}
     </div>
   );
 }
